@@ -13,15 +13,12 @@ public class Order {
         this.goodItemList = goodItemList;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
     public List<GoodItem> getGoodItemList() {
         return goodItemList;
+    }
+
+    @Override
+    public String toString() {
+        return name + address + goodItemList.toString();
     }
 }

@@ -11,24 +11,13 @@ public class GoodItem {
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    double totalPrice() {
+    double totalItemPrice() {
         return price * quantity;
     }
 
     @Override
     public String toString() {
-        return description + "\t" + price + "\t" + quantity + "\t" + totalPrice() + "\n";
+        return description + "\t" + price + "\t" + quantity + "\t" + totalItemPrice() + "\n";
     }
 }

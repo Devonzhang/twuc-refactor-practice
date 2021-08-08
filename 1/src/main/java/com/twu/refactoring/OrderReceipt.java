@@ -7,6 +7,10 @@ package com.twu.refactoring;
  * total sales tax) and prints it.
  */
 public class OrderReceipt {
+    private static final String PRINTING_ORDERS = "======Printing Orders======\n";
+    private static final String SALES_TAX = "Sales Tax\t";
+    private static final String TOTAL_AMOUNT = "Total Amount\t";
+    private static final double TAX_RATE = .10d;
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -15,14 +19,13 @@ public class OrderReceipt {
 
     public String printReceipt() {
         StringBuilder receipt = new StringBuilder();
-        double taxRate = .10d;
-        double totalPrice = order.getGoodItemList().stream().mapToDouble(GoodItem::totalPrice).sum();
-        double totalSalesTax = totalPrice * taxRate;
-        double totalAmount = totalPrice + totalSalesTax;
-        receipt.append("======Printing Orders======\n" + order.getName() + order.getAddress());
-        order.getGoodItemList().forEach(goodItem -> receipt.append(goodItem.toString()));
-        receipt.append("Sales Tax").append('\t').append(totalSalesTax);
-        receipt.append("Total Amount").append('\t').append(totalAmount);
+        double totalPrice = order.getGoodItemList().stream().mapToDouble(GoodItem::totalItemPrice).sum();
+        double totalSalesTax = totalPrice * TAX_RATE;
+        double totalPayAmount = totalPrice + totalSalesTax;
+        receipt.append(PRINTING_ORDERS);
+        receipt.append(order.toString());
+        receipt.append(SALES_TAX).append(totalSalesTax);
+        receipt.append(TOTAL_AMOUNT).append(totalPayAmount);
         return receipt.toString();
     }
 }
