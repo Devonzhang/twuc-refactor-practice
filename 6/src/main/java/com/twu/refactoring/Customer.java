@@ -28,10 +28,12 @@ public class Customer {
         double totalAmount = rentalList.stream().mapToDouble(Rental::getThisAmount).sum();
         int frequentRenterPoints = rentalList.stream().mapToInt(Rental::getFrequentRenterPoints).sum();
         String result = STATEMENT_HEADER + getName() + "\n";
-        result += rentalList.toString().replaceAll("\\[", "").replaceAll("]", "").replaceAll(",", "").replaceAll(" \t", "\t");
+        result += rentalList.toString().replaceAll("\\[", "")
+                .replaceAll("]", "")
+                .replaceAll(",", "")
+                .replaceAll(" \t", "\t");
         result += AMOUNT_OWED_IS + totalAmount;
-        result += YOU_EARNED + frequentRenterPoints
-                + FREQUENT_RENTER_POINTS;
+        result += YOU_EARNED + frequentRenterPoints + FREQUENT_RENTER_POINTS;
         return result;
     }
 
